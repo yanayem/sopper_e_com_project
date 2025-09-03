@@ -1,0 +1,185 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+@import '@fontsource/space-grotesk/300.css';
+@import '@fontsource/space-grotesk/500.css';
+@import '@fontsource/space-grotesk/700.css';
+
+/* =========================================
+   Base Layer
+========================================= */
+@layer base {
+  /* ---------- Light Mode Variables ---------- */
+  :root {
+    --radius: 0.625rem;
+
+    /* Core Colors */
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+    --primary: oklch(0.205 0 0);
+    --primary-foreground: oklch(0.985 0 0);
+
+    /* Custom Greens */
+    --green: hsl(87, 100%, 70%);
+    --green-light: hsl(162, 50%, 72%);
+  }
+
+  /* ---------- Dark Mode Variables ---------- */
+  .dark {
+    --background: 222 47% 4%;
+    --foreground: 213 31% 91%;
+    --primary: 250 65% 65%;
+    --primary-foreground: 213 31% 91%;
+
+    --green: hsl(87, 100%, 70%);
+    --green-light: hsl(162, 50%, 30%);
+  }
+
+  /* ---------- Global Styles ---------- */
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    scroll-behavior: smooth;
+  }
+}
+
+/* =========================================
+   Utilities
+========================================= */
+@layer utilities {
+  /* ---------- Container ---------- */
+  .container {
+    margin-inline: auto;
+    padding-inline: 2rem;
+    width: 100%;
+    max-width: 1400px;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      max-width: 640px;
+    }
+  }
+  @media (min-width: 768px) {
+    .container {
+      max-width: 768px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .container {
+      max-width: 1024px;
+    }
+  }
+  @media (min-width: 1280px) {
+    .container {
+      max-width: 1280px;
+    }
+  }
+  @media (min-width: 1400px) {
+    .container {
+      max-width: 1400px;
+    }
+  }
+
+  /* ---------- Animations ---------- */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-in {
+    animation: fade-in 1s ease forwards;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  .animate-scroll {
+    display: flex;
+    width: max-content;
+    animation: scroll 20s linear infinite;
+  }
+
+  /* ---------- Star Rating Vertical ---------- */
+  .rating-vertical label {
+    display: block !important;
+    margin: 4px 0;
+  }
+
+  /* ---------- Text & Background Colors ---------- */
+  .text-green {
+    color: var(--green);
+  }
+  .bg-green {
+    background-color: var(--green);
+  }
+  .hover\:bg-green-light:hover {
+    background-color: var(--green-light);
+  }
+  .bg-green-light {
+    background-color: var(--green-light);
+  }
+  .hover\:text-green:hover {
+    color: var(--green);
+  }
+  .hover\:text-green-light:hover {
+    color: var(--green-light);
+  }
+
+ 
+
+/*When radio is checked, make outer border and inner circle green */
+input[type="radio"].peer:checked + .custom-radio-outer .custom-radio-inner {
+  background-color: var(--green);
+}
+
+
+
+
+  /* ---------- Gradient Text ---------- */
+  .bg-upper_custom {
+    background: linear-gradient(90deg, #f97316, #eab308);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* ---------- Borders ---------- */
+  .border-green {
+    border-color: var(--green);
+  }
+}
+
+/* =========================================
+   Notes:
+   - Dark mode: add "dark" class on <html> or <body>
+   - Smooth scroll enabled for all links
+   - Star rating can be stacked vertically
+========================================= */
+
+html {
+  scroll-behavior: smooth;
+}
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  display: flex;
+  width: max-content;
+  animation: scroll 20s linear infinite;
+}
