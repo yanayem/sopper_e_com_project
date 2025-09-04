@@ -13,7 +13,7 @@ const NavBarSeconde = () => {
     <section className="py-20 bg-gray-50 dark:bg-gray-900">
       <div className="container">
         {/* responsive grid: 2 rows on mobile, 1 row on desktop */}
-        <div className="grid grid-cols-3 sm:grid-cols-6 gap-6 place-items-center">
+        <div className="grid grid-cols-3 sm:grid-cols-6 gap-6 place-items-center dark:bg-gray-400 dark:rounded-3xl dark:p-6">
           {items.map((icon, index) => (
             <img
               key={index}

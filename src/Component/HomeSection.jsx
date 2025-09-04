@@ -27,7 +27,7 @@ const HomeSection = () => {
             marketing, and content creation.
           </p>
           <div className="flex justify-center md:justify-start gap-4 w-full">
-            <button className="w-full md:w-auto px-6 py-3 rounded-lg bg-black text-white font-medium shadow-md hover:bg-blue-700 transition">
+            <button className="w-full md:w-auto px-6 py-3 rounded-lg bg-black dark:bg-gray-700 text-white font-medium shadow-md hover:bg-gray-500 transition">
               Book a consultation
             </button>
           </div>

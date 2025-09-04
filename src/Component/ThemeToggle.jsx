@@ -19,12 +19,25 @@ const ThemeToggle = () => {
   }, [theme]);
 
   return (
-    <button
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="px-4 py-2 rounded bg-gray-200 dark:bg-gray-800 text-black dark:text-white"
-    >
-      {theme === "dark" ? "Switch to Light" : "Switch to Dark"}
-    </button>
+    <div className="flex items-center gap-3">
+      {/* Label */}
+      <span className="text-sm font-medium">
+        {theme === "dark" ? "Dark Mode" : "Light Mode"}
+      </span>
+
+      {/* Toggle Button */}
+      <button
+        type="button"
+        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+        className={`relative inline-flex h-6 w-12 items-center rounded-full transition-colors
+          ${theme === "dark" ? "bg-gray-600" : "bg-gray-300"}`}
+      >
+        <span
+          className={`inline-block h-5 w-5 transform rounded-full bg-white shadow transition-transform
+            ${theme === "dark" ? "translate-x-6" : "translate-x-1"}`}
+        />
+      </button>
+    </div>
   );
 };
 

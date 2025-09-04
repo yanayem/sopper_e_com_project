@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const CustomerReview = () => {
   const reviews = [
@@ -29,14 +29,23 @@ const CustomerReview = () => {
     },
   ];
 
+  // Duplicate first 3 slides at the end for smooth infinite loop
+  const duplicates = 3;
+  const extendedReviews = [...reviews, ...reviews.slice(0, duplicates)];
+
   const carouselRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardWidth, setCardWidth] = useState(0);
+  const isManualScrolling = useRef(false);
 
+  // Calculate width of a single slide including gap
   useEffect(() => {
     const updateCardWidth = () => {
       if (carouselRef.current && carouselRef.current.children.length > 0) {
-        setCardWidth(carouselRef.current.children[0].offsetWidth + 24); // card width + gap
+        const firstSlide = carouselRef.current.children[0];
+        const style = window.getComputedStyle(firstSlide);
+        const marginRight = parseInt(style.marginRight) || 0;
+        setCardWidth(firstSlide.offsetWidth + marginRight);
       }
     };
     updateCardWidth();
@@ -44,96 +53,116 @@ const CustomerReview = () => {
     return () => window.removeEventListener("resize", updateCardWidth);
   }, []);
 
+  // Scroll to specific index smoothly
   const scrollToIndex = (index) => {
-    if (carouselRef.current) {
+    if (carouselRef.current && cardWidth) {
       carouselRef.current.scrollTo({
         left: index * cardWidth,
         behavior: "smooth",
       });
+      setCurrentIndex(index % reviews.length);
     }
   };
 
+  // Infinite loop adjustment after scroll
+  const handleScroll = () => {
+    if (!carouselRef.current || !cardWidth) return;
+    const scrollLeft = carouselRef.current.scrollLeft;
+    const totalSlides = extendedReviews.length;
+
+    // Smooth jump when reaching duplicated slides
+    if (scrollLeft >= cardWidth * reviews.length) {
+      carouselRef.current.scrollTo({
+        left: 0,
+        behavior: "auto",
+      });
+    } else if (scrollLeft <= -1) {
+      carouselRef.current.scrollTo({
+        left: cardWidth * reviews.length,
+        behavior: "auto",
+      });
+    }
+
+    const index = Math.round(scrollLeft / cardWidth);
+    if (!isManualScrolling.current) {
+      setCurrentIndex(index % reviews.length);
+    }
+  };
+
+  // Next / Prev buttons
   const nextSlide = () => {
-    const newIndex = (currentIndex + 1) % reviews.length;
-    setCurrentIndex(newIndex);
+    isManualScrolling.current = true;
+    let newIndex = currentIndex + 1;
     scrollToIndex(newIndex);
+    setTimeout(() => (isManualScrolling.current = false), 300);
   };
 
   const prevSlide = () => {
-    const newIndex = (currentIndex - 1 + reviews.length) % reviews.length;
-    setCurrentIndex(newIndex);
+    isManualScrolling.current = true;
+    let newIndex = currentIndex - 1;
+    if (newIndex < 0) newIndex = reviews.length - 1;
     scrollToIndex(newIndex);
+    setTimeout(() => (isManualScrolling.current = false), 300);
   };
 
   return (
     <section className="relative py-16 px-6 lg:px-20 bg-[#1a1a1a] text-white">
-      <h2 className="text-3xl font-bold text-center mb-12">
+      <h1 className="text-3xl text-center mb-12">
         Customer <span className="text-green">Reviews</span>
-      </h2>
+      </h1>
 
       {/* Carousel */}
       <div
         ref={carouselRef}
-        className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4"
+        className="carousel flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4"
+        onScroll={handleScroll}
+        tabIndex={0}
+        aria-label="Customer reviews carousel"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
-        <style>
-          {`
-      ::-webkit-scrollbar {
-        display: none;
-      }
-    `}
-        </style>
-        {reviews.map((review, index) => (
+        {extendedReviews.map((review, idx) => (
           <div
-            key={index}
-            className="flex-none w-full sm:w-1/2 lg:w-1/3  flex flex-col"
+            key={idx}
+            className="slide flex-none w-80 sm:w-90 lg:w-96 snap-start bg-[#1a1a1a] border border-green rounded-2xl p-6 shadow-md flex flex-col justify-between relative"
           >
-            <div className="relative bg-[#1a1a1a] border border-green p-6 rounded-2xl shadow-md w-full h-full flex flex-col justify-between">
-              <p className="text-gray-300 text-sm sm:text-base min-h-[100px]">
-                "{review.desc}"
-              </p>
-              <div className="absolute -bottom-3 left-10 w-6 h-6 bg-[#1a1a1a] border-l border-b border-green rotate-315"></div>
-            </div>
-
+            <p className="desc text-gray-300 text-sm sm:text-base min-h-[100px]">
+              "{review.desc}"
+            </p>
+            <div className="tail absolute bottom-[-12px] left-10 w-6 h-6 bg-[#1a1a1a] border-l border-b border-green rotate-[-45deg]"></div>
             <div className="mt-6 text-left">
-              <h4 className="text-lg font-bold text-green">{review.name}</h4>
-              <p className="text-sm text-gray-400">{review.pos}</p>
+              <h4 className="name text-green font-bold text-lg">{review.name}</h4>
+              <p className="pos text-gray-400 text-sm">{review.pos}</p>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Carousel Controls */}
-      <div className="flex justify-center items-center gap-10 mt-8">
-        {/* Left Arrow */}
+      {/* Controls */}
+      <div className="controls flex justify-center items-center gap-10 mt-8">
         <button
           onClick={prevSlide}
-          className="text-gray-400 hover:text-white transition text-2xl"
+          className="btn text-gray-400 hover:text-white text-2xl"
+          aria-label="Previous slide"
         >
           &#10094;
         </button>
 
-        {/* Dots */}
-        <div className="flex items-center gap-2 divide-none">
+        <div className="dots flex gap-3">
           {reviews.map((_, idx) => (
             <div
               key={idx}
-              className={`w-3 h-3 rounded-full transition ${
+              className={`dot w-3 h-3 rounded-full cursor-pointer transition ${
                 idx === currentIndex ? "bg-green" : "bg-gray-600"
               }`}
-              onClick={() => {
-                setCurrentIndex(idx);
-                scrollToIndex(idx);
-              }}
-            ></div>
+              onClick={() => scrollToIndex(idx)}
+            />
           ))}
         </div>
 
-        {/* Right Arrow */}
         <button
           onClick={nextSlide}
-          className="text-gray-400 hover:text-white transition text-2xl"
+          className="btn text-gray-400 hover:text-white text-2xl"
+          aria-label="Next slide"
         >
           &#10095;
         </button>

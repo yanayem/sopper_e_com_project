@@ -17,7 +17,7 @@ const HeroSection = () => {
               media marketing, and content creation.
             </p>
             <div className="flex justify-center md:justify-start gap-4">
-              <button className="w-full md:w-auto px-6 py-3 rounded-2xl bg-black text-white font-medium shadow-md hover:bg-blue-700 transition">
+              <button className="w-full md:w-auto px-6 py-3 rounded-2xl bg-black dark:bg-gray-900 text-white font-medium shadow-md hover:bg-gray-600 transition">
                 Book a consultation
               </button>
             </div>

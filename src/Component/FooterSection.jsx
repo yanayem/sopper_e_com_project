@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../assets/Logo2.png";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
+import ThemeToggle from "./ThemeToggle"; // ✅ import your toggle component
 
 const FooterSection = () => {
   return (
@@ -14,34 +15,22 @@ const FooterSection = () => {
           {/* Navigation Links */}
           <ul className="flex flex-col md:flex-row gap-2 md:gap-4 mt-4 md:mt-0 text-sm text-center md:text-left">
             <li>
-              <a href="#" className="hover:text-eighth transition">
-                Home
-              </a>
+              <a href="#" className="hover:text-eighth transition">Home</a>
             </li>
             <li>
-              <a href="#" className="hover:text-eighth transition">
-                Portfolio
-              </a>
+              <a href="#" className="hover:text-eighth transition">Portfolio</a>
             </li>
             <li>
-              <a href="#" className="hover:text-eighth transition">
-                Blog
-              </a>
+              <a href="#" className="hover:text-eighth transition">Blog</a>
             </li>
             <li>
-              <a href="#" className="hover:text-eighth transition">
-                About
-              </a>
+              <a href="#" className="hover:text-eighth transition">About</a>
             </li>
             <li>
-              <a href="#" className="hover:text-eighth transition">
-                Service
-              </a>
+              <a href="#" className="hover:text-eighth transition">Service</a>
             </li>
             <li>
-              <a href="#" className="hover:text-eighth transition">
-                Contact
-              </a>
+              <a href="#" className="hover:text-eighth transition">Contact</a>
             </li>
           </ul>
 
@@ -85,11 +74,11 @@ const FooterSection = () => {
               <li className="flex items-center justify-center md:justify-start gap-2">
                 Phone: 555-567-8901
               </li>
-              <li className="items-center justify-center md:justify-start gap-2">
-                <li className="flex flex-col items-center md:items-start gap-2 text-gray-300">
+              <li>
+                <div className="flex flex-col items-center md:items-start gap-2 text-gray-300">
                   <span>Address: 1234 Main St,</span>
                   <span>Moonstone City, Stardust State 12345</span>
-                </li>
+                </div>
               </li>
             </ul>
           </div>
@@ -137,14 +126,21 @@ const FooterSection = () => {
 
       {/* Bottom Footer */}
       <footer className="bg-gray-800 py-4 text-gray-50 text-sm">
-  <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-20">
-    <span>© {new Date().getFullYear()} Your Company. All Rights Reserved.</span>
-    <a href="#" className="hover:text-eighth transition">
-      Privacy Policy
-    </a>
-  </div>
-</footer>
+        <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="text-center md:text-left">
+            <span>© {new Date().getFullYear()} Your Company. All Rights Reserved.</span>
+            <a href="#" className="ml-4 hover:text-eighth transition">
+              Privacy Policy
+            </a>
+          </div>
 
+          {/* ✅ Theme Toggle added to right side */}
+          <div className="w-auto flex justify-end">
+  <ThemeToggle />
+</div>
+
+        </div>
+      </footer>
     </main>
   );
 };

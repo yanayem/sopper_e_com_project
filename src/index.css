@@ -1,8 +1,8 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
-@import '@fontsource/space-grotesk/300.css';
-@import '@fontsource/space-grotesk/500.css';
-@import '@fontsource/space-grotesk/700.css';
+@import "@fontsource/space-grotesk/300.css";
+@import "@fontsource/space-grotesk/500.css";
+@import "@fontsource/space-grotesk/700.css";
 
 /* =========================================
    Base Layer
@@ -36,7 +36,7 @@
 
   /* ---------- Global Styles ---------- */
   body {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: "Space Grotesk", sans-serif;
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     scroll-behavior: smooth;
@@ -135,16 +135,14 @@
   .hover\:text-green-light:hover {
     color: var(--green-light);
   }
+  .hover\:border-green:hover {
+    border-color: var(--green);
+  }
 
- 
-
-/*When radio is checked, make outer border and inner circle green */
-input[type="radio"].peer:checked + .custom-radio-outer .custom-radio-inner {
-  background-color: var(--green);
-}
-
-
-
+  /*When radio is checked, make outer border and inner circle green */
+  input[type="radio"].peer:checked + .custom-radio-outer .custom-radio-inner {
+    background-color: var(--green);
+  }
 
   /* ---------- Gradient Text ---------- */
   .bg-upper_custom {

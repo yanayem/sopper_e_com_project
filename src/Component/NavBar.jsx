@@ -1,6 +1,7 @@
 // src/components/NavBar.js
 import React, { useState } from "react";
-import logo from "../assets/Logo.png"; // Ensure the logo path is correct
+import logo from "../assets/Logo.png";
+import logo2 from "../assets/Logo2.png";
 
 const HamburgerIcon = () => (
   <svg
@@ -51,7 +52,20 @@ const NavBar = () => {
     <nav className="bg-white dark:bg-gray-900 shadow-md fixed w-full z-50">
       <div className="container mx-auto p-2 flex justify-between items-center">
         {/* Logo */}
-        <img src={logo} alt="LOGO" className="h-10 w-auto" />
+        <div className="h-10 w-auto">
+          {/* Light mode logo */}
+          <img
+            src={logo}
+            alt="Logo Light"
+            className="h-10 w-auto block dark:hidden"
+          />
+          {/* Dark mode logo */}
+          <img
+            src={logo2}
+            alt="Logo Dark"
+            className="h-10 w-auto hidden dark:block"
+          />
+        </div>
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex space-x-6">
@@ -59,7 +73,7 @@ const NavBar = () => {
             <li key={item.id}>
               <a
                 href={`#${item.id}`}
-                className="text-black dark:text-green-400 hover:text-green-600 transition-colors duration-300 cursor-pointer"
+                className="text-black dark:text-gray-50 hover:text-green transition-colors duration-300 cursor-pointer"
                 onClick={() => setIsOpen(false)}
               >
                 {item.label}
@@ -71,8 +85,13 @@ const NavBar = () => {
         {/* Auth Buttons - Desktop */}
         <div className="hidden md:flex space-x-4">
           <a
-            href="#sign-up"
-            className="px-4 py-2 rounded-md border border-black text-black hover:bg-green-600 transition-colors duration-300 cursor-pointer"
+            href="#"
+            className="px-4 py-2 rounded-md border border-black text-black 
+               dark:text-gray-50 dark:border-white 
+               hover:bg-green hover:text-green hover:border-green 
+               transition-colors duration-300 cursor-pointer 
+               focus:outline-none focus:ring-2 focus:ring-green focus:ring-offset-2 
+               dark:focus:ring-offset-gray-900"
           >
             Request a quote
           </a>
@@ -80,7 +99,7 @@ const NavBar = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-black dark:text-green-400 focus:outline-none"
+          className="md:hidden text-black dark:text-gray-50 focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle Menu"
         >
@@ -99,7 +118,7 @@ const NavBar = () => {
             <li key={item.id}>
               <a
                 href={`#${item.id}`}
-                className="block text-black dark:text-green-400 hover:text-green-600 transition-colors duration-300 cursor-pointer"
+                className="block text-black dark:text-gray-50 hover:text-green transition-colors duration-300 cursor-pointer"
                 onClick={() => setIsOpen(false)}
               >
                 {item.label}
@@ -111,8 +130,13 @@ const NavBar = () => {
         {/* Auth Buttons - Mobile */}
         <div className="flex flex-col space-y-2 mt-4">
           <a
-            href="#sign-up"
-            className="px-4 py-2 rounded-md border border-black text-black hover:bg-green-600 transition-colors duration-300 cursor-pointer"
+            href="#getQuote"
+           className="px-4 py-2 rounded-md border border-black text-black 
+               dark:text-gray-50 dark:border-white 
+               hover:bg-green hover:text-green hover:border-green 
+               transition-colors duration-300 cursor-pointer 
+               focus:outline-none focus:ring-2 focus:ring-green focus:ring-offset-2 
+               dark:focus:ring-offset-gray-900"
           >
             Request a quote
           </a>

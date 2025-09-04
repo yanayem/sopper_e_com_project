@@ -56,7 +56,7 @@ const WorkingProcess = () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className={`rounded-2xl p-6 shadow-md flex flex-col items-center text-center transition-colors duration-300 shadow-black-100 border-2 border-black
+              className={`rounded-2xl p-6 shadow-md flex flex-col items-center text-center transition-colors duration-300 shadow-black-100 border-2 border-black dark:border-0
     ${
       openIndex === index
         ? "bg-green text-black"
@@ -70,7 +70,7 @@ const WorkingProcess = () => {
                 onClick={() => toggleOpen(index)}
               >
                 <h3 className="text-xl lg:text-2xl font-semibold flex items-center gap-2">
-                  <span className="text-black font-bold py-2">
+                  <span className=" font-bold py-2">
                     {service.num.toString().padStart(2, "0")}.
                   </span>
                   {service.title}

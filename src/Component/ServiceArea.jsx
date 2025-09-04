@@ -64,7 +64,7 @@ const ServiceArea = () => {
       <div className="container mx-auto px-6">
         {/* Header */}
 <div className="mb-10 text-center md:text-left md:flex md:items-center md:gap-6">
-  <h2 className="inline-block text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 px-4 py-2 bg-green rounded-md">
+  <h2 className="inline-block text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 px-4 py-2 bg-green rounded-md">
     Our Services
   </h2>
   <p className="mt-4 md:mt-0 text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto md:mx-0">
@@ -78,7 +78,7 @@ const ServiceArea = () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className={`rounded-2xl p-6 shadow-md flex flex-row items-center text-left transition border-2 border-black ${service.cardBg}`}
+              className={`rounded-2xl p-6 shadow-md flex flex-row items-center text-left transition border-2 border-black dark:border-0 ${service.cardBg}`}
             >
               {/* Left Column: Text */}
               <div className="flex-1 pr-4 flex flex-col">

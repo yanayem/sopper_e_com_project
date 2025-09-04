@@ -83,9 +83,7 @@ const ContactSection = () => {
                   className="hidden"
                 />
                 {/* Outer circle */}
-                <span
-                  className="w-5 h-5 flex items-center justify-center rounded-full border-1 transition-all duration-200 border-black"
-                >
+                <span className="w-5 h-5 flex items-center justify-center rounded-full border-2 transition-all duration-200 border-black">
                   {/* Inner circle */}
                   <span
                     className="w-3 h-3 rounded-full transition-all duration-200"
@@ -95,34 +93,32 @@ const ContactSection = () => {
                     }}
                   ></span>
                 </span>
-                <span className="text-sm dark:text-white">Say Hi</span>
+                <span className="text-sm dark:text-black">Say Hi</span>
               </label>
 
               {/* Get a Quote */}
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="radio"
-                  name="mode"
-                  value="getQuote"
-                  checked={mode === "getQuote"}
-                  onChange={() => setMode("getQuote")}
-                  className="hidden"
-                />
-                {/* Outer circle */}
-                <span
-                  className="w-5 h-5 flex items-center justify-center rounded-full border-1 border-black transition-all duration-200"
-                >
-                  {/* Inner circle */}
-                  <span
-                    className="w-3 h-3 rounded-full transition-all duration-200"
-                    style={{
-                      backgroundColor:
-                        mode === "getQuote" ? "var(--green)" : "transparent",
-                    }}
-                  ></span>
-                </span>
-                <span className="text-sm dark:text-white">Get a Quote</span>
-              </label>
+              {/* Target Section */}
+              <div id="getQuote">
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="mode"
+                    value="getQuote"
+                    checked={mode === "getQuote"}
+                    onChange={() => setMode("getQuote")}
+                    className="hidden"
+                  />
+                  {/* Outer circle */}
+                  <span className="w-5 h-5 flex items-center justify-center rounded-full border-2 transition-all duration-200 border-black">
+                    {/* Inner circle */}
+                    <span
+                      className={`w-3 h-3 rounded-full transition-all duration-200
+          ${mode === "getQuote" ? "bg-green" : "bg-transparent"}`}
+                    />
+                  </span>
+                  <span className="text-sm dark:text-black">Get a Quote</span>
+                </label>
+              </div>
             </div>
 
             {/* Contact Form */}
@@ -131,7 +127,7 @@ const ContactSection = () => {
               <div>
                 <label
                   htmlFor="name"
-                  className="block mb-2 text-sm font-medium dark:text-gray-100"
+                  className="block mb-2 text-sm font-medium dark:text-gray-900"
                 >
                   Your Name
                 </label>
@@ -143,7 +139,7 @@ const ContactSection = () => {
                   onChange={handleChange}
                   required
                   placeholder="Your Name"
-                  className="w-full px-4 py-3 border rounded-md dark:text-white"
+                  className="w-full px-4 py-3 border rounded-md dark:text-black"
                 />
               </div>
 
@@ -151,7 +147,7 @@ const ContactSection = () => {
               <div>
                 <label
                   htmlFor="email"
-                  className="block mb-2 text-sm font-medium dark:text-gray-100"
+                  className="block mb-2 text-sm font-medium dark:text-gray-900"
                 >
                   Your Email
                 </label>
@@ -163,7 +159,7 @@ const ContactSection = () => {
                   onChange={handleChange}
                   required
                   placeholder="mail@mail.com"
-                  className="w-full px-4 py-3 border rounded-md dark:text-white"
+                  className="w-full px-4 py-3 border rounded-md dark:text-black"
                 />
               </div>
 
@@ -180,7 +176,7 @@ const ContactSection = () => {
                     <div>
                       <label
                         htmlFor="budget"
-                        className="block mb-2 text-sm font-medium dark:text-gray-100"
+                        className="block mb-2 text-sm font-medium dark:text-gray-900"
                       >
                         Project Budget
                       </label>
@@ -191,14 +187,14 @@ const ContactSection = () => {
                         value={formData.budget}
                         onChange={handleChange}
                         placeholder="e.g. $1000 - $5000"
-                        className="w-full px-4 py-3 border rounded-md dark:text-white"
+                        className="w-full px-4 py-3 border rounded-md dark:text-black"
                       />
                     </div>
 
                     <div>
                       <label
                         htmlFor="timeline"
-                        className="block mb-2 text-sm font-medium dark:text-gray-100"
+                        className="block mb-2 text-sm font-medium dark:text-gray-900"
                       >
                         Timeline
                       </label>
@@ -209,7 +205,7 @@ const ContactSection = () => {
                         value={formData.timeline}
                         onChange={handleChange}
                         placeholder="e.g. 2-3 weeks"
-                        className="w-full px-4 py-3 border rounded-md dark:text-white"
+                        className="w-full px-4 py-3 border rounded-md dark:text-black"
                       />
                     </div>
                   </motion.div>
@@ -220,7 +216,7 @@ const ContactSection = () => {
               <div>
                 <label
                   htmlFor="message"
-                  className="block mb-2 text-sm font-medium dark:text-gray-100"
+                  className="block mb-2 text-sm font-medium dark:text-gray-900"
                 >
                   Your Message
                 </label>
@@ -236,7 +232,7 @@ const ContactSection = () => {
                       ? "Hello! I just wanted to say hi..."
                       : "Describe your project requirements..."
                   }
-                  className="w-full px-4 py-3 border rounded-md resize-none dark:text-white"
+                  className="w-full px-4 py-3 border rounded-md resize-none dark:text-black"
                 />
               </div>
 
@@ -244,7 +240,7 @@ const ContactSection = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full px-4 py-3 rounded-md bg-primary text-white transition-all duration-300 bg-black ${
+                className={`w-full px-4 py-3 rounded-md bg-primary text-white transition-all duration-300 bg-black hover:bg-gray-800 ${
                   isSubmitting
                     ? "opacity-50 cursor-not-allowed"
                     : "cursor-pointer hover:bg-primary/80 hover:scale-[1.02] active:scale-[0.98]"

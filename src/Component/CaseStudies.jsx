@@ -46,11 +46,11 @@ const CaseStudies = () => {
         </div>
 
         {/* Desktop Row */}
-        <div className="hidden md:flex justify-between items-start bg-gray-900 rounded-2xl px-6 py-10">
+        <div className="hidden md:flex justify-between items-start bg-gray-800 rounded-2xl px-6 py-10">
           {services.map((service, index) => (
             <div key={index} className="flex-1 text-center px-4 last:border-0 border-r border-gray-50">
               <p className="text-white">{service.desc}</p>
-              <a className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-xl text-green hover:bg-gray-200 transition" href="#">
+              <a className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-xl text-green hover:bg-gray-700 transition" href="#">
                 Learn More <MoveUpRight className="w-4 h-4 text-green" />
               </a>
             </div>
