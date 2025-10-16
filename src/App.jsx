@@ -1,7 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // Page page Imports
 import Shop from "./Page/Shop";
+<<<<<<< HEAD
 import Login from "./Page/login";
+=======
+import Login from "./Page/AuthContainer";
+>>>>>>> b71416d (Fix: corrected AuthContainer import case for Vercel)
 import NotFoundPage from "./Page/NotFoundPage";
 // Component Imports
 import NavBar from "./Component/NavBar";

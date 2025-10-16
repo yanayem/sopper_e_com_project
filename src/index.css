@@ -211,4 +211,8 @@ html {
 
 .ring_blue:focus {
   outline-offset: 2px;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> b71416d (Fix: corrected AuthContainer import case for Vercel)

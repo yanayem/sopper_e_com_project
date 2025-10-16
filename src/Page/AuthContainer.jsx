@@ -14,8 +14,8 @@ const EyeOff = FaEyeSlash;
 const Logo = () => (
   <Link to="/">
     <div className="flex justify-center items-center mb-8 gap-4 cursor-pointer">
-      <img src={logo} alt="Sopper Logo" />  {/* Removed invalid href attribute */}
-      <span className="text-4xl font-black text-blue-900 tracking-wider">
+      <img src={logo} alt="Sopper Logo" />  
+      <span className="text-4xl font-black text-gray-900 tracking-wider">
         Sopper
       </span>
     </div>
@@ -150,7 +150,7 @@ const LoginForm = ({ onSwitchMode, onShowMessage }) => {
         <label className="flex items-center text-gray-600">
           <input
             type="checkbox"
-            className="mr-2 rounded text_form border-gray-300 focus:ring_blue"
+            className="mr-2 rounded text_form border-gray-300 ring_blue"
           />
           Remember me
         </label>
