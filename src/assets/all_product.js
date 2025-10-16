@@ -34,6 +34,7 @@ import p33_img from "./product_33.png";
 import p34_img from "./product_34.png";
 import p35_img from "./product_35.png";
 import p36_img from "./product_36.png";
+import p9_1_img from "./product_9.1.png";
 
 let all_product = [
   {
@@ -43,6 +44,12 @@ let all_product = [
     image: p1_img,
     new_price: 50.0,
     old_price: 80.5,
+    sizeChart: [
+      { size: "S", chest: "34in", length: "24in", sleeve: "8in", collar: "14in" },
+      { size: "M", chest: "36in", length: "25in", sleeve: "8.5in", collar: "15in" },
+      { size: "L", chest: "38in", length: "26in", sleeve: "9in", collar: "16in" },
+    ],
+    description: "A stylish striped blouse with flutter sleeves, ideal for everyday wear.",
   },
   {
     id: 2,
@@ -51,6 +58,12 @@ let all_product = [
     image: p2_img,
     new_price: 85.0,
     old_price: 120.5,
+    sizeChart: [
+      { size: "S", chest: "34in", length: "24in", sleeve: "8in", collar: "14in" },
+      { size: "M", chest: "36in", length: "25in", sleeve: "8.5in", collar: "15in" },
+      { size: "L", chest: "38in", length: "26in", sleeve: "9in", collar: "16in" },
+    ],
+    description: "Elegant blouse with overlapping collar and peplum hem for a flattering fit.",
   },
   {
     id: 3,
@@ -59,6 +72,12 @@ let all_product = [
     image: p3_img,
     new_price: 60.0,
     old_price: 100.5,
+    sizeChart: [
+      { size: "S", chest: "34in", length: "24in", sleeve: "8in", collar: "14in" },
+      { size: "M", chest: "36in", length: "25in", sleeve: "8.5in", collar: "15in" },
+      { size: "L", chest: "38in", length: "26in", sleeve: "9in", collar: "16in" },
+    ],
+    description: "Comfortable and versatile blouse with a modern striped design.",
   },
   {
     id: 4,
@@ -67,6 +86,12 @@ let all_product = [
     image: p4_img,
     new_price: 100.0,
     old_price: 150.0,
+    sizeChart: [
+      { size: "S", chest: "34in", length: "24in", sleeve: "8in", collar: "14in" },
+      { size: "M", chest: "36in", length: "25in", sleeve: "8.5in", collar: "15in" },
+      { size: "L", chest: "38in", length: "26in", sleeve: "9in", collar: "16in" },
+    ],
+    description: "High-quality blouse featuring flutter sleeves and a peplum hem for added style.",
   },
   {
     id: 5,
@@ -75,6 +100,12 @@ let all_product = [
     image: p5_img,
     new_price: 85.0,
     old_price: 120.5,
+    sizeChart: [
+      { size: "S", chest: "34in", length: "24in", sleeve: "8in", collar: "14in" },
+      { size: "M", chest: "36in", length: "25in", sleeve: "8.5in", collar: "15in" },
+      { size: "L", chest: "38in", length: "26in", sleeve: "9in", collar: "16in" },
+    ],
+    description: "Trendy striped blouse with a comfortable fit and elegant design.",
   },
   {
     id: 6,
@@ -83,6 +114,12 @@ let all_product = [
     image: p6_img,
     new_price: 85.0,
     old_price: 120.5,
+    sizeChart: [
+      { size: "S", chest: "34in", length: "24in", sleeve: "8in", collar: "14in" },
+      { size: "M", chest: "36in", length: "25in", sleeve: "8.5in", collar: "15in" },
+      { size: "L", chest: "38in", length: "26in", sleeve: "9in", collar: "16in" },
+    ],
+    description: "Soft fabric blouse with stripes, perfect for casual or formal occasions.",
   },
   {
     id: 7,
@@ -91,6 +128,12 @@ let all_product = [
     image: p7_img,
     new_price: 85.0,
     old_price: 120.5,
+    sizeChart: [
+      { size: "S", chest: "34in", length: "24in", sleeve: "8in", collar: "14in" },
+      { size: "M", chest: "36in", length: "25in", sleeve: "8.5in", collar: "15in" },
+      { size: "L", chest: "38in", length: "26in", sleeve: "9in", collar: "16in" },
+    ],
+    description: "Fashionable blouse with a flattering peplum hem and stripe pattern.",
   },
   {
     id: 8,
@@ -99,14 +142,27 @@ let all_product = [
     image: p8_img,
     new_price: 85.0,
     old_price: 120.5,
+    sizeChart: [
+      { size: "S", chest: "34in", length: "24in", sleeve: "8in", collar: "14in" },
+      { size: "M", chest: "36in", length: "25in", sleeve: "8.5in", collar: "15in" },
+      { size: "L", chest: "38in", length: "26in", sleeve: "9in", collar: "16in" },
+    ],
+    description: "Versatile striped blouse for a chic look.",
   },
   {
     id: 9,
     name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
     category: "women",
     image: p9_img,
+    image_thamb: [p9_img, p9_1_img],
     new_price: 85.0,
     old_price: 120.5,
+    sizeChart: [
+      { size: "S", chest: "34in", length: "24in", sleeve: "8in", collar: "14in" },
+      { size: "M", chest: "36in", length: "25in", sleeve: "8.5in", collar: "15in" },
+      { size: "L", chest: "38in", length: "26in", sleeve: "9in", collar: "16in" },
+    ],
+    description: "Lightweight and breathable blouse with a modern twist.",
   },
   {
     id: 10,
@@ -115,7 +171,15 @@ let all_product = [
     image: p10_img,
     new_price: 85.0,
     old_price: 120.5,
+    sizeChart: [
+      { size: "S", chest: "34in", length: "24in", sleeve: "8in", collar: "14in" },
+      { size: "M", chest: "36in", length: "25in", sleeve: "8.5in", collar: "15in" },
+      { size: "L", chest: "38in", length: "26in", sleeve: "9in", collar: "16in" },
+    ],
+    description: "Classic design blouse with stripes for all-day comfort.",
   },
+  
+
   {
     id: 11,
     name: "Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse",
