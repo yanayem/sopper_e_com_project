@@ -1,13 +1,15 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+// Page page Imports
+import Shop from "./Page/Shop";
+import Login from "./Page/login";
+import NotFoundPage from "./Page/NotFoundPage";
+// Component Imports
 import NavBar from "./Component/NavBar";
 import Footer from "./Component/FooterSection";
-import Shop from "./Page/Shop";
-import Login from "./Page/Login";
-import NotFoundPage from "./Page/NotFoundPage";
+import ProductDetails from "./Component/ProductDetails";
 import MenPage from "./Component/Menpage";
 import WomenPage from "./Component/WomenPage";
 import KidsPage from "./Component/kidspage";
-import ProductDetails from "./Component/ProductDetails";
 import { CartProvider } from "./Component/CartContext";
 import CartPage from "./Component/CartPage"
 
