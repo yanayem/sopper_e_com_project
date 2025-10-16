@@ -1,7 +1,6 @@
-// src/components/NavBar.js
 import React, { useState, useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
-import logo from "../assets/Logo.png";
+import logo from "../assets/logo.png";
 import cartIcon from "../assets/cart_icon.png";
 import { CartContext } from "./CartContext";
 
@@ -49,6 +48,7 @@ const NavBar = () => {
           <img src={logo} alt="Logo" className="h-10 w-auto block dark:hidden" />
           <span className="font-semibold text-lg tracking-wide text-black dark:text-gray-50">SHOPPER</span>
         </div>
+        
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex space-x-6">
@@ -87,6 +87,19 @@ const NavBar = () => {
         </div>
 
         {/* Mobile Menu Button */}
+        {/* Mobile Cart Icon */}
+        {/* Mobile Cart Icon */}
+<div className="md:hidden flex items-end ml-30">
+  <Link to="/cart" className="relative">
+    <img src={cartIcon} alt="Cart" className="h-7 w-auto block dark:hidden" />
+    {totalItems > 0 && (
+      <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1">
+        {totalItems}
+      </span>
+    )}
+  </Link>
+</div>
+
         <button
           className="md:hidden text-black dark:text-gray-50 focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
@@ -115,22 +128,10 @@ const NavBar = () => {
           ))}
           <Link
             to="/login"
-            className="px-4 py-2 rounded-full border border-black text-black dark:text-gray-50 dark:border-white hover:bg-red-500 hover:text-white hover:border-red-500 transition-colors duration-300"
+            className="px-4 py-2 rounded-full border border-black text-black dark:text-gray-50 dark:border-white hover:bg-red-500 hover:text-white hover:border-red-500 transition-colors duration-300 text-center"
             onClick={() => setIsOpen(false)}
           >
             Login
-          </Link>
-          <Link
-            to="/cart"
-            className="relative px-4 py-2 rounded-full border border-black text-black dark:text-gray-50 dark:border-white hover:bg-red-500 hover:text-white hover:border-red-500 transition-colors duration-300"
-            onClick={() => setIsOpen(false)}
-          >
-            Cart
-            {totalItems > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1">
-                {totalItems}
-              </span>
-            )}
           </Link>
         </div>
       )}
