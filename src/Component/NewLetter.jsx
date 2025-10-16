@@ -16,7 +16,7 @@ const NewLetter = () => {
 
         {/* Form */}
         <div className="flex justify-center">
-          <form className="flex flex-col sm:flex-row items-center gap-2 w-full max-w-md bg-white border border-gray-900 rounded-full">
+          <form className="flex flex-row items-center gap-2 w-auto md:w-full max-w-md bg-white border border-gray-900 rounded-full">
             <input
               type="email"
               placeholder="Your Email ID..."
