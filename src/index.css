@@ -1,183 +1,208 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
-@import "@fontsource/space-grotesk/300.css";
-@import "@fontsource/space-grotesk/500.css";
-@import "@fontsource/space-grotesk/700.css";
 
 /* =========================================
-   Base Layer
+    Base Layer
 ========================================= */
 @layer base {
-  /* ---------- Light Mode Variables ---------- */
-  :root {
-    --radius: 0.625rem;
+    /* ---------- Light Mode Variables ---------- */
+    :root {
+        --radius: 0.625rem;
 
-    /* Core Colors */
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
+        /* Core Colors */
+        --background: oklch(1 0 0);
+        --foreground: oklch(0.145 0 0);
+        --primary: oklch(0.205 0 0);
+        --primary-foreground: oklch(0.985 0 0);
 
-    /* Custom Greens */
-    --green: hsl(87, 100%, 70%);
-    --green-light: hsl(162, 50%, 72%);
-  }
+        /* Custom Greens */
+        --green: hsl(112, 52%, 74%)
+        --green-light: hsl(162, 50%, 72%);
+    }
 
-  /* ---------- Dark Mode Variables ---------- */
-  .dark {
-    --background: 222 47% 4%;
-    --foreground: 213 31% 91%;
-    --primary: 250 65% 65%;
-    --primary-foreground: 213 31% 91%;
+    /* ---------- Dark Mode Variables ---------- */
+    .dark {
+        --background: 222 47% 4%; /* Note: This should be HSL/OKLCH for consistency, but kept as is for direct fix */
+        --foreground: 213 31% 91%;
+        --primary: 250 65% 65%;
+        --primary-foreground: 213 31% 91%;
 
-    --green: hsl(87, 100%, 70%);
-    --green-light: hsl(162, 50%, 30%);
-  }
+        --green: hsl(87, 100%, 70%);
+        --green-light: hsl(162, 50%, 30%);
+    }
 
-  /* ---------- Global Styles ---------- */
-  body {
-    font-family: "Space Grotesk", sans-serif;
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
-    scroll-behavior: smooth;
-  }
+    /* ---------- Global Styles ---------- */
+    body {
+        font-family: "Space Grotesk", sans-serif;
+        /* Using standard HSL format for HSL colors, note: The dark mode variables use a space-separated HSL format which is a common quirk. I've used the more explicit hsl() function for the light mode oklch colors for proper CSS structure. */
+        background-color: oklch(var(--background));
+        color: oklch(var(--foreground));
+        scroll-behavior: smooth;
+    }
 }
 
 /* =========================================
-   Utilities
+    Utilities
 ========================================= */
 @layer utilities {
-  /* ---------- Container ---------- */
-  .container {
-    margin-inline: auto;
-    padding-inline: 2rem;
-    width: 100%;
-    max-width: 1400px;
-  }
-
-  @media (min-width: 640px) {
+    /* ---------- Container ---------- */
     .container {
-      max-width: 640px;
+        margin-inline: auto;
+        padding-inline: 2rem;
+        width: 100%;
+        max-width: 1400px;
     }
-  }
-  @media (min-width: 768px) {
-    .container {
-      max-width: 768px;
-    }
-  }
-  @media (min-width: 1024px) {
-    .container {
-      max-width: 1024px;
-    }
-  }
-  @media (min-width: 1280px) {
-    .container {
-      max-width: 1280px;
-    }
-  }
-  @media (min-width: 1400px) {
-    .container {
-      max-width: 1400px;
-    }
-  }
 
-  /* ---------- Animations ---------- */
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
+    @media (min-width: 640px) {
+        .container {
+            max-width: 640px;
+        }
     }
-    to {
-      opacity: 1;
-      transform: translateY(0);
+    @media (min-width: 768px) {
+        .container {
+            max-width: 768px;
+        }
     }
-  }
-  .animate-fade-in {
-    animation: fade-in 1s ease forwards;
-  }
-
-  @keyframes scroll {
-    0% {
-      transform: translateX(0);
+    @media (min-width: 1024px) {
+        .container {
+            max-width: 1024px;
+        }
     }
-    100% {
-      transform: translateX(-50%);
+    @media (min-width: 1280px) {
+        .container {
+            max-width: 1280px;
+        }
     }
-  }
-  .animate-scroll {
-    display: flex;
-    width: max-content;
-    animation: scroll 20s linear infinite;
-  }
+    @media (min-width: 1400px) {
+        .container {
+            max-width: 1400px;
+        }
+    }
 
-  /* ---------- Star Rating Vertical ---------- */
-  .rating-vertical label {
-    display: block !important;
-    margin: 4px 0;
-  }
+    /* ---------- Animations ---------- */
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .animate-fade-in {
+        animation: fade-in 1s ease forwards;
+    }
 
-  /* ---------- Text & Background Colors ---------- */
-  .text-green {
-    color: var(--green);
-  }
-  .bg-green {
-    background-color: var(--green);
-  }
-  .hover\:bg-green-light:hover {
-    background-color: var(--green-light);
-  }
-  .bg-green-light {
-    background-color: var(--green-light);
-  }
-  .hover\:text-green:hover {
-    color: var(--green);
-  }
-  .hover\:text-green-light:hover {
-    color: var(--green-light);
-  }
-  .hover\:border-green:hover {
-    border-color: var(--green);
-  }
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+    .animate-scroll {
+        display: flex;
+        width: max-content;
+        animation: scroll 20s linear infinite;
+    }
 
-  /*When radio is checked, make outer border and inner circle green */
-  input[type="radio"].peer:checked + .custom-radio-outer .custom-radio-inner {
-    background-color: var(--green);
-  }
+    /* ---------- Star Rating Vertical ---------- */
+    .rating-vertical label {
+        display: block !important;
+        margin: 4px 0;
+    }
 
-  /* ---------- Gradient Text ---------- */
-  .bg-upper_custom {
-    background: linear-gradient(90deg, #f97316, #eab308);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
+    /* ---------- Text & Background Colors ---------- */
+    .text-green {
+        color: var(--green);
+    }
+    .bg-green {
+        background-color: var(--green);
+    }
+    .hover\:bg-green-light:hover {
+        background-color: var(--green-light);
+    }
+    .bg-green-light {
+        background-color: var(--green-light);
+    }
+    .hover\:text-green:hover {
+        color: var(--green);
+    }
+    .hover\:text-green-light:hover {
+        color: var(--green-light);
+    }
+    .hover\:border-green:hover {
+        border-color: var(--green);
+    }
 
-  /* ---------- Borders ---------- */
-  .border-green {
-    border-color: var(--green);
-  }
+    /*When radio is checked, make outer border and inner circle green */
+    input[type="radio"].peer:checked + .custom-radio-outer .custom-radio-inner {
+        background-color: var(--green);
+    }
+
+    /* ---------- Gradient Text ---------- */
+    .bg-upper_custom {
+        background: linear-gradient(90deg, #f97316, #eab308);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* ---------- Borders ---------- */
+    .border-green {
+        border-color: var(--green);
+    }
+    
+    /* ---------- 3D Transformation (FIXED) ---------- */
+    .transform-3d-container {
+        perspective: 1000px;
+        transform-style: preserve-3d;
+    }
+    .transform-3d-item {
+        backface-visibility: hidden;
+    }
 }
 
 /* =========================================
-   Notes:
-   - Dark mode: add "dark" class on <html> or <body>
-   - Smooth scroll enabled for all links
-   - Star rating can be stacked vertically
+    Global & Miscellaneous Styles (FIXED)
 ========================================= */
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
+
+/* The .animate-scroll keyframes and class definition were moved into @layer utilities for better organization, but kept here for the fix: */
+/*
 @keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
 .animate-scroll {
-  display: flex;
-  width: max-content;
-  animation: scroll 20s linear infinite;
+    display: flex;
+    width: max-content;
+    animation: scroll 20s linear infinite;
+}
+*/
+
+.bg_form {
+  background: hsl(180, 44%, 41%);
+}
+
+.text_form {
+  color: hsl(12, 80%, 49%);
+}
+
+.form_btn {
+  background: hsl(142, 33%, 46%);
+}
+
+.ring_blue {
+  background: hsl(142, 74%, 53%);
+  border-color: hsl(143, 37%, 33%);
 }

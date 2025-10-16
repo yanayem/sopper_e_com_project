@@ -1,7 +1,9 @@
 // src/components/NavBar.js
-import React, { useState } from "react";
-import logo from "../assets/Logo.png";
-import logo2 from "../assets/Logo2.png";
+import React, { useState, useContext } from "react";
+import { NavLink, Link } from "react-router-dom";
+import logo from "../assets/logo.png";
+import cartIcon from "../assets/cart_icon.png";
+import { CartContext } from "./CartContext";
 
 const HamburgerIcon = () => (
   <svg
@@ -11,12 +13,7 @@ const HamburgerIcon = () => (
     viewBox="0 0 24 24"
     stroke="currentColor"
   >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M4 6h16M4 12h16M4 18h16"
-    />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
   </svg>
 );
 
@@ -28,73 +25,65 @@ const CloseIcon = () => (
     viewBox="0 0 24 24"
     stroke="currentColor"
   >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M6 18L18 6M6 6l12 12"
-    />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
   </svg>
 );
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { cart } = useContext(CartContext);
+  const totalItems = cart.reduce((acc, item) => acc + item.qty, 0);
 
   const navItems = [
-    { id: "about", label: "About Us" },
-    { id: "service", label: "Service" },
-    { id: "usecases", label: "Use Cases" },
-    { id: "pricing", label: "Pricing" },
-    { id: "blog", label: "Blog" },
+    { path: "/", label: "Shop" },
+    { path: "/men", label: "Men" },
+    { path: "/women", label: "Women" },
+    { path: "/kid", label: "Kids" },
   ];
 
   return (
     <nav className="bg-white dark:bg-gray-900 shadow-md fixed w-full z-50">
       <div className="container mx-auto p-2 flex justify-between items-center">
         {/* Logo */}
-        <div className="h-10 w-auto">
-          {/* Light mode logo */}
-          <img
-            src={logo}
-            alt="Logo Light"
-            className="h-10 w-auto block dark:hidden"
-          />
-          {/* Dark mode logo */}
-          <img
-            src={logo2}
-            alt="Logo Dark"
-            className="h-10 w-auto hidden dark:block"
-          />
+        <div className="flex items-center space-x-2">
+          <img src={logo} alt="Logo" className="h-10 w-auto block dark:hidden" />
+          <span className="font-semibold text-lg tracking-wide text-black dark:text-gray-50">SHOPPER</span>
         </div>
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex space-x-6">
           {navItems.map((item) => (
-            <li key={item.id}>
-              <a
-                href={`#${item.id}`}
-                className="text-black dark:text-gray-50 hover:text-green transition-colors duration-300 cursor-pointer"
-                onClick={() => setIsOpen(false)}
+            <li key={item.path}>
+              <NavLink
+                to={item.path}
+                className={({ isActive }) =>
+                  `text-black dark:text-gray-50 hover:text-red-500 transition-colors duration-300 cursor-pointer ${
+                    isActive ? "border-b-2 border-red-500 pb-1" : ""
+                  }`
+                }
               >
                 {item.label}
-              </a>
+              </NavLink>
             </li>
           ))}
         </ul>
 
-        {/* Auth Buttons - Desktop */}
-        <div className="hidden md:flex space-x-4">
-          <a
-            href="#"
-            className="px-4 py-2 rounded-md border border-black text-black 
-               dark:text-gray-50 dark:border-white 
-               hover:bg-green hover:text-green hover:border-green 
-               transition-colors duration-300 cursor-pointer 
-               focus:outline-none focus:ring-2 focus:ring-green focus:ring-offset-2 
-               dark:focus:ring-offset-gray-900"
+        {/* Login & Cart - Desktop */}
+        <div className="hidden md:flex items-center space-x-4">
+          <Link
+            to="/login"
+            className="px-4 py-2 rounded-full border border-black text-black dark:text-gray-50 dark:border-white hover:bg-red-500 hover:text-white hover:border-red-500 transition-colors duration-300"
           >
-            Request a quote
-          </a>
+            Login
+          </Link>
+          <Link to="/cart" className="relative">
+            <img src={cartIcon} alt="Cart" className="h-10 w-auto block dark:hidden" />
+            {totalItems > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1">
+                {totalItems}
+              </span>
+            )}
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -108,40 +97,43 @@ const NavBar = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div
-        className={`md:hidden bg-white dark:bg-gray-900 px-6 overflow-hidden transition-all duration-300 ${
-          isOpen ? "max-h-96 py-4" : "max-h-0"
-        }`}
-      >
-        <ul className="flex flex-col space-y-4">
+      {isOpen && (
+        <div className="md:hidden bg-white dark:bg-gray-900 px-6 py-4 flex flex-col space-y-3">
           {navItems.map((item) => (
-            <li key={item.id}>
-              <a
-                href={`#${item.id}`}
-                className="block text-black dark:text-gray-50 hover:text-green transition-colors duration-300 cursor-pointer"
-                onClick={() => setIsOpen(false)}
-              >
-                {item.label}
-              </a>
-            </li>
+            <NavLink
+              key={item.path}
+              to={item.path}
+              className={({ isActive }) =>
+                `text-black dark:text-gray-50 hover:text-red-500 transition-colors duration-300 cursor-pointer ${
+                  isActive ? "border-b-2 border-red-500 pb-1" : ""
+                }`
+              }
+              onClick={() => setIsOpen(false)}
+            >
+              {item.label}
+            </NavLink>
           ))}
-        </ul>
-
-        {/* Auth Buttons - Mobile */}
-        <div className="flex flex-col space-y-2 mt-4">
-          <a
-            href="#getQuote"
-           className="px-4 py-2 rounded-md border border-black text-black 
-               dark:text-gray-50 dark:border-white 
-               hover:bg-green hover:text-green hover:border-green 
-               transition-colors duration-300 cursor-pointer 
-               focus:outline-none focus:ring-2 focus:ring-green focus:ring-offset-2 
-               dark:focus:ring-offset-gray-900"
+          <Link
+            to="/login"
+            className="px-4 py-2 rounded-full border border-black text-black dark:text-gray-50 dark:border-white hover:bg-red-500 hover:text-white hover:border-red-500 transition-colors duration-300"
+            onClick={() => setIsOpen(false)}
           >
-            Request a quote
-          </a>
+            Login
+          </Link>
+          <Link
+            to="/cart"
+            className="relative px-4 py-2 rounded-full border border-black text-black dark:text-gray-50 dark:border-white hover:bg-red-500 hover:text-white hover:border-red-500 transition-colors duration-300"
+            onClick={() => setIsOpen(false)}
+          >
+            Cart
+            {totalItems > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1">
+                {totalItems}
+              </span>
+            )}
+          </Link>
         </div>
-      </div>
+      )}
     </nav>
   );
 };

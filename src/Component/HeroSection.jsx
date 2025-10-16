@@ -1,36 +1,42 @@
 import React from "react";
-import image from "../assets/Frame 19.png";
+import { ArrowRight } from "lucide-react";
+import image from "../assets/hero_image.png";
+import hand from "../assets/hand_icon.png";
+import "../styles/HeroSection.css";
 
 const HeroSection = () => {
   return (
-    <section id="home" className="py-16 sm:py-20 bg-gray-50 dark:bg-gray-900">
-      <div className="container mx-auto ">
-        <div className="flex flex-col-reverse md:flex-row items-center justify-between p-4 sm:p-6 md:p-10 bg-gray-200 dark:bg-gray-800 rounded-3xl md:rounded-4xl">
-          {/* Left Column: Text */}
-          <div className="md:w-1/2 space-y-6 text-center md:text-left">
-            <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight text-gray-900 dark:text-white">
-              Navigating the digital landscape for success
-            </h1>
-            <p className="text-base sm:text-lg md:text-lg text-gray-600 dark:text-gray-300">
-              Our digital marketing agency helps businesses grow and succeed
-              online through a range of services including SEO, PPC, social
-              media marketing, and content creation.
-            </p>
-            <div className="flex justify-center md:justify-start gap-4">
-              <button className="w-full md:w-auto px-6 py-3 rounded-2xl bg-black dark:bg-gray-900 text-white font-medium shadow-md hover:bg-gray-600 transition">
-                Book a consultation
-              </button>
-            </div>
-          </div>
+    <section id="home" className="hero_bg py-8 sm:py-20 flex items-center">
+      <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
+        {/* Left Column: Text */}
+        <div className="md:w-1/2 space-y-6 text-center md:text-left order-1 md:order-1">
+          <p className="text-sm sm:text-base md:text-lg text-black">
+            NEW ARRIVALS ONLY
+          </p>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-snug text-black dark:text-white flex flex-col gap-2">
+            <span className="flex items-center justify-center md:justify-start gap-2">
+              New{" "}
+              <img src={hand} alt="hand" className="inline-block h-[1em] w-auto" />
+            </span>
+            <span>collections</span>
+            <span>for everyone</span>
+          </h1>
 
-          {/* Right Column: Image */}
-          <div className="md:w-1/2 mb-10 md:mb-0 flex justify-center">
-            <img
-              src={image}
-              alt="Dashboard preview"
-              className="max-w-full h-auto hidden sm:block"
-            />
+          <div className="flex justify-center md:justify-start mt-4">
+            <button
+              className="w-full md:w-auto px-6 py-3 rounded-2xl bg-black text-white font-medium shadow-md 
+                         hover:bg-gray-700 hover:scale-105 transition-transform flex items-center justify-center gap-2"
+              aria-label="Go to latest collection"
+            >
+              Latest Collection
+              <ArrowRight className="w-5 h-5" />
+            </button>
           </div>
+        </div>
+
+        {/* Right Column: Image */}
+        <div className="md:w-1/2 mb-10 md:mb-0 flex justify-center order-2 md:order-2 hidden md:flex">
+          <img src={image} alt="Dashboard preview" className="max-w-full h-auto" />
         </div>
       </div>
     </section>

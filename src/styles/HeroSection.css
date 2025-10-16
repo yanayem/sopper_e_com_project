@@ -1,0 +1,10 @@
+.hero_bg {
+  background: linear-gradient(180deg, hsl(296, 90%, 94%), hsl(0, 0%, 100%));
+  background-attachment: fixed; /* fixed while scrolling */
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.btn{
+  background: hsl(0, 87%, 60%);
+}

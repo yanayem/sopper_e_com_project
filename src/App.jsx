@@ -1,25 +1,48 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './Page/Home';
-import NotFoundPage from './Page/NotFoundPage';
-import { Toaster } from 'react-hot-toast';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NavBar from "./Component/NavBar";
+import Footer from "./Component/FooterSection";
+import Shop from "./Page/Shop";
+import Login from "./Page/Login";
+import NotFoundPage from "./Page/NotFoundPage";
+import MenPage from "./Component/Menpage";
+import WomenPage from "./Component/WomenPage";
+import KidsPage from "./Component/kidspage";
+import ProductDetails from "./Component/ProductDetails";
+import { CartProvider } from "./Component/CartContext";
+import CartPage from "./Component/CartPage"
 
-const App = () => {
-  useEffect(() => {
-    document.title = "Positivus";
-  }, []); 
+// Layout wrapper (Navbar + Footer)
+const Layout = ({ children }) => (
+  <>
+    <NavBar />
+    {children}
+    <Footer />
+  </>
+);
 
+function App() {
   return (
-  <div className="font-grotesk">
-    <Toaster position="top-right" />
+    <CartProvider>
     <BrowserRouter>
       <Routes>
-        <Route index element={<Home />} />
-        <Route path="*" element={<NotFoundPage />} />
+        <Route path="/" element={<Layout><Shop /></Layout>} />
+        <Route path="/men" element={<Layout><MenPage /></Layout>} />
+        <Route path="/women" element={<Layout><WomenPage /></Layout>} />
+        <Route path="/kid" element={<Layout><KidsPage /></Layout>} /> 
+
+        {/* ✅ Product Details Route (with Navbar + Footer) */}
+        <Route path="/product/:id" element={<Layout><ProductDetails /></Layout>} />
+        <Route path="/cart" element={<Layout><CartPage /></Layout>} />
+
+        {/* Login Page (no layout) */}
+        <Route path="/login" element={<Login />} />  
+
+        {/* 404 Page */}
+        <Route path="*" element={<NotFoundPage />} />  
       </Routes>
     </BrowserRouter>
-  </div>
-);
-};
+    </CartProvider>
+  );
+}
 
 export default App;
