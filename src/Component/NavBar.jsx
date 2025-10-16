@@ -1,7 +1,7 @@
 // src/components/NavBar.js
 import React, { useState, useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
-import logo from "../assets/logo.png";
+import logo from "../assets/Logo.png";
 import cartIcon from "../assets/cart_icon.png";
 import { CartContext } from "./CartContext";
 
