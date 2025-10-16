@@ -22,7 +22,7 @@ const FooterSection = () => {
           </div>
 
           {/* Navigation Links */}
-          <ul className="flex flex-wrap justify-center gap-4 text-md mt-4 pt-7">
+          <ul className="flex flex-wrap justify-center gap-4 text-base md:text-md mt-4 pt-7">
             <li><a href="#" className="hover:text-eighth transition">Company</a></li>
             <li><a href="#" className="hover:text-eighth transition">Products</a></li>
             <li><a href="#" className="hover:text-eighth transition">Offices</a></li>
