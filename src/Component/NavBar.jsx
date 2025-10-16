@@ -88,8 +88,7 @@ const NavBar = () => {
 
         {/* Mobile Menu Button */}
         {/* Mobile Cart Icon */}
-        {/* Mobile Cart Icon */}
-<div className="md:hidden flex items-end ml-30">
+<div className="md:hidden flex items-end ml-25">
   <Link to="/cart" className="relative">
     <img src={cartIcon} alt="Cart" className="h-7 w-auto block dark:hidden" />
     {totalItems > 0 && (
